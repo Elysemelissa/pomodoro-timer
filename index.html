@@ -5,25 +5,32 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
   <title>Pomodoro Timer</title>
 </head>
 
 <body>
-
-  <div id="startButton">
-    <button id="timerStart">Start</button>
+  <div class="timer-container">
+    <div class="timer-title">
+      <h2>Pomodoro Timer</h2>
+    </div>
+    <div class="timer-clock">
+      <h2>00:00</h2>
+    </div>
+    <a href="#" class="start-button">Start</a>
   </div>
 
-  <div id="timerClock">
-  </div>
 
   <script>
-    document.getElementById("timerStart").addEventListener("click", function () {
+    document.querySelector(".start-button").addEventListener("click", function () {
       let startMin = 0.1; // time in minutes for countdown
       let time = startMin * 60;
 
       let countdown = setInterval(update, 1000)
-      document.getElementById("timerClock").innerHTML = `${min}:${sec}`;
+      document.querySelector(".timer-clock").innerHTML = `${min}:${sec}`;
 
       function update() {
         let min = Math.floor(time / 60);
@@ -31,10 +38,10 @@
         sec = sec < 10 ? '0' + sec : sec;
         time--;
 
-        document.getElementById("timerClock").innerHTML = `${min}:${sec}`; // show timer in html
+        document.querySelector(".timer-clock").innerHTML = `<h2>${min}:${sec}</h2>`; // show timer in html
         if (min == 0 && sec == 0) { // if timer runs out
           clearInterval(countdown) // stop timer
-          document.getElementById("timerClock").innerHTML = 'Break Time' // replace time with text
+          document.querySelector(".timer-clock").innerHTML = 'Break Time' // replace time with text
         } else {
           countdown; // keep going :)
         }
